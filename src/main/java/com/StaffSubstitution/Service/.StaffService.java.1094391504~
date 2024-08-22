@@ -1,0 +1,22 @@
+package com.StaffSubstitution.Service;
+
+import java.sql.*;
+import com.StaffSubstitution.DAO.*;
+import java.util.List;
+
+import com.StaffSubstitution.Model.*;
+
+public class StaffService {
+  public List<Staff> getAllStaffs() {
+    try {
+      StaffDAO staffDao = new StaffDAO();
+      List<Staff> staffList = staffDao.getAllStaff();
+      System.out.println("NO OF ENTRIES: " + staffList.size());
+      System.out.println(staffList.toString());reutrn
+    } catch (SQLException ex) {
+      System.out.println("Error while reading data from DB \n");
+      ex.printStackTrace();
+    }
+  }
+
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+    "http://hibernate.sourceforge.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!-- JDBC Database connection settings -->
+        <property name="hibernate.connection.driver_class">org.h2.Driver</property>
+        <property name="hibernate.connection.url">jdbc:h2:file:./data/mydatabase;DB_CLOSE_ON_EXIT=TRUE</property>
+        <property name="hibernate.connection.username">sa</property>
+        <property name="hibernate.connection.password"></property>
+
+        <!-- Specify the dialect -->
+        <property name="hibernate.dialect">org.hibernate.dialect.H2Dialect</property>
+
+        <!-- Specify the hbm2ddl.auto property to automatically create/update schema -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <!--<property name="hibernate.hbm2ddl.auto">create-drop</property>-->
+         <property name="hibernate.id.new_generator_mappings">true</property>
+        <!-- Specify the show_sql property to log SQL statements -->
+        <property name="hibernate.show_sql">true</property>
+
+        <!-- Specify the current session context -->
+        <property name="hibernate.current_session_context_class">thread</property>
+
+        <!-- Specify the current session context -->
+        <property name="current_session_context_class">thread</property>
+        <mapping class="com.StaffSubstitution.Model.Staff"/>
+        <mapping class="com.StaffSubstitution.Model.TimeTable"/>
+       
+    </session-factory>
+</hibernate-configuration>
