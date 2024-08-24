@@ -13,41 +13,35 @@ import org.hibernate.SessionFactory;
 import java.util.List;
 import com.StaffSubstitution.Model.*;
 import java.util.concurrent.*;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import javafx.scene.control.Label;
 
-public class Main {
-    static HashMap<Integer, ArrayList<String>> actingStaffList = new HashMap<Integer, ArrayList<String>>();
+public class Main extends Application {
 
     public static void main(String[] args) {
-        ConcurrentHashMap<String, Set<Staff>> availableStaffMap = SubstitutionStaffMapUtil.getSubstitueStaffMap();
-
-        try {
-            String fileName = "src/main/resources/SAMPLE.xlsx";
-            SessionFactory sess = HibernateUtil.getSessionFactory();
-            loadExcelData loadService = new loadExcelData();
-            StaffService staffService = new StaffService();
-            TimeTableService timeTableService = new TimeTableService();
-            // loadService.readAndLoadData(fileName);
-            List<Staff> staffList = staffService.getAllStaffs();
-            // timeTableService.getAllTimeTable();
-            for (Staff staff : staffList)
-                System.out.println(staff.getStaffId() + "\t" + staff.getName() + "\n_________________________");
-            List<Integer> absentStaffIds = staffService.getAbsentStaff();
-            for (Integer staffID : absentStaffIds)
-                System.out.println(staffID + "\n_________________________");
-            List<TimeTable> absentstaffTimeTableList = timeTableService.getAbsentStaffTimeTable(absentStaffIds);
-            for (TimeTable timeTable : absentstaffTimeTableList)
-                System.out.println(timeTable.toString() + "\n");
-            timeTableService.processStaffTimetables(absentstaffTimeTableList);
-            System.out.println("The periods need staff subtitution" + SubstitutionStaffMapUtil.getSubstitueStaffMap());
-            timeTableService.findSubstituteStaffForPeriods();
-            System.out
-                    .println("The Available Substitute Staff are: " + SubstitutionStaffMapUtil.getSubstitueStaffMap());
-            sess.close();
-
-        } catch (Exception e) {
-            System.err.println("Error retrieving staff data: ");
-            e.printStackTrace();
-        }
-
+        launch(args);
     }
+
+    @Override
+    public void start(Stage primaryStage) {
+        // Welcome Message
+        Label welcomeLabel = new Label("Staff Substitution App worked great");
+
+        // Root layout
+        VBox root = new VBox();
+        root.getChildren().add(welcomeLabel);
+
+        // Scene setup
+        Scene scene = new Scene(root, 300, 200);
+
+        // Stage (window) setup
+        primaryStage.setTitle("Welcome");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+        System.out.println("Hi");
+    }
+
 }

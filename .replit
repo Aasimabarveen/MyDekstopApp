@@ -2,6 +2,7 @@ compile = "mvn clean compile"
 run = "mvn exec:java -Dexec.mainClass=com.StaffSubstitution.app.Main"
 entrypoint = "src/main/java/Main.java"
 hidden = ["**/*.class"]
+modules = ["java-graalvm22.3"]
 
 [packager]
 language = "java"
